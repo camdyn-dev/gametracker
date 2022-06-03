@@ -7,7 +7,7 @@ function GameForm(props) {
 
   const [title, handleTitle] = useInput("");
   const [imgSrc, handleImgSrc] = useInput("");
-  const [completed, handleCompleted] = useInput("false");
+  const [completed, handleCompleted] = useInput("no");
 
   console.log(completed, "re-render");
 
@@ -15,6 +15,7 @@ function GameForm(props) {
     const res = await axios.post("http://localhost:3001/", {
       title,
       imgSrc,
+      completed,
     });
     console.log(res);
   }; // not entirely sure, but making the forum function async doesn't play well with navigate
@@ -36,20 +37,23 @@ function GameForm(props) {
         <input type="text" id="imgSrc" value={imgSrc} onChange={handleImgSrc} />
         <div onChange={handleCompleted}>
           <h4>Have you completed the game?</h4>
-          <label htmlFor="completedTrue">True?</label>
+          <label htmlFor="completedYes">Yes</label>
+          <input type="radio" name="completed" value="yes" id="completedYes" />
+          <br />
+          <label htmlFor="completedPartial">Partially</label>
           <input
             type="radio"
             name="completed"
-            value="true"
-            id="completedTrue"
+            value="partially"
+            id="completedPartially"
           />
           <br />
-          <label htmlFor="completedFalse">False?</label>
+          <label htmlFor="completedTrue">No</label>
           <input
             type="radio"
-            value="false"
+            value="no"
             name="completed"
-            id="completedFalse"
+            id="completedNo"
             defaultChecked
           />
         </div>

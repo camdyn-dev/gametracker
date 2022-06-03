@@ -14,7 +14,7 @@ function GameList() {
     fetchData();
   }, []); //not exactly sure where to put this, also not 100% sure how to make this work exactly like componentDidMount
 
-  return games.map((game) => <Game {...game} />);
+  return games.map((game) => <Game {...game} key={game.id} />);
 }
 
 export default GameList;
