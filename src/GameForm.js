@@ -1,11 +1,20 @@
 import React from "react";
 import useInput from "./hooks/useInput";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function GameForm(props) {
-  const { games, setGames } = props;
+  // const { games, setGames } = props;
 
   const [title, handleTitle] = useInput("");
   const [imgSrc, handleImgSrc] = useInput("");
+
+  const post = async () => {
+    const res = await axios.post("http://localhost:3001/", {
+      title,
+      imgSrc,
+    });
+    console.log(res);
+  }; // not entirely sure, but making the forum function async doesn't play well with navigate
 
   const navigate = useNavigate();
   return (
@@ -13,7 +22,7 @@ function GameForm(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setGames([...games, { title, imgSrc }]);
+          post();
           navigate("/");
         }}
       >

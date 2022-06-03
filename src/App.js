@@ -7,16 +7,16 @@ import axios from "axios";
 
 function App() {
   const [games, setGames] = useState([
-    {
-      title: "Shin Megami Tensei V",
-      imgSrc: "https://art.gametdb.com/switch/box/US/AM7NC.png?1642196995",
-    },
+    // {
+    //   title: "Shin Megami Tensei V",
+    //   imgSrc: "https://art.gametdb.com/switch/box/US/AM7NC.png?1642196995",
+    // },
   ]);
 
   useEffect(() => {
     const fetchData = async () => {
-      // const data = await axios.get("http://localhost:3001");
-      // setGames(data.data);
+      const data = await axios.get("http://localhost:3001");
+      setGames(data.data);
     };
     fetchData();
   }); //not exactly sure where to put this, also not 100% sure how to make this work exactly like componentDidMount
