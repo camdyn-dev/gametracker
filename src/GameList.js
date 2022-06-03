@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Game from "./Game";
+import GamePreview from "./GamePreview";
 import axios from "axios";
 
 function GameList() {
@@ -14,7 +14,7 @@ function GameList() {
     fetchData();
   }, []); //not exactly sure where to put this, also not 100% sure how to make this work exactly like componentDidMount
 
-  return games.map((game) => <Game {...game} key={game.id} />);
+  return games.map((game) => <GamePreview {...game} key={game.id} />);
 }
 
 export default GameList;

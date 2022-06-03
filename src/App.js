@@ -3,11 +3,13 @@ import "./App.css";
 import GameList from "./GameList";
 import { Routes, Route } from "react-router-dom";
 import GameForm from "./GameForm";
+import GameDetails from "./GameDetails";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<GameList />} />
+      <Route path="/games" element={<GameList />} />
+      <Route path="/games/:id" element={<GameDetails />} />
       <Route path="/addGame" element={<GameForm />} />
     </Routes>
   );
