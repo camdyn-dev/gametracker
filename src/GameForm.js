@@ -7,6 +7,9 @@ function GameForm(props) {
 
   const [title, handleTitle] = useInput("");
   const [imgSrc, handleImgSrc] = useInput("");
+  const [completed, handleCompleted] = useInput("false");
+
+  console.log(completed, "re-render");
 
   const post = async () => {
     const res = await axios.post("http://localhost:3001/", {
@@ -26,9 +29,30 @@ function GameForm(props) {
           navigate("/");
         }}
       >
-        <label htmlFor="title">Title</label>
-        <input type="text" value={title} onChange={handleTitle} />
-        <input type="text" value={imgSrc} onChange={handleImgSrc} />
+        <h3>Game Information</h3>
+        <label htmlFor="title">Title:</label>
+        <input type="text" id="title" value={title} onChange={handleTitle} />
+        <label htmlFor="imgSrc">Box art link:</label>
+        <input type="text" id="imgSrc" value={imgSrc} onChange={handleImgSrc} />
+        <div onChange={handleCompleted}>
+          <h4>Have you completed the game?</h4>
+          <label htmlFor="completedTrue">True?</label>
+          <input
+            type="radio"
+            name="completed"
+            value="true"
+            id="completedTrue"
+          />
+          <br />
+          <label htmlFor="completedFalse">False?</label>
+          <input
+            type="radio"
+            value="false"
+            name="completed"
+            id="completedFalse"
+            defaultChecked
+          />
+        </div>
         <button type="submit">submit gaming</button>
       </form>
     </div>
