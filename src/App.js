@@ -1,16 +1,24 @@
 import "./App.css";
+import { useState } from "react";
 import GameList from "./GameList";
-const games = [
-  {
-    title: "Shin Megami Tensei V",
-    imgSrc: "https://art.gametdb.com/switch/box/US/AM7NC.png?1642196995",
-  },
-];
+import { Routes, Route } from "react-router-dom";
+import GameForm from "./GameForm";
+
 function App() {
+  const [games, setGames] = useState([
+    {
+      title: "Shin Megami Tensei V",
+      imgSrc: "https://art.gametdb.com/switch/box/US/AM7NC.png?1642196995",
+    },
+  ]);
   return (
-    <div className="App">
-      <GameList games={games} />
-    </div>
+    <Routes>
+      <Route path="/" element={<GameList games={games} />} />
+      <Route
+        path="/addGame"
+        element={<GameForm games={games} setGames={setGames} />}
+      />
+    </Routes>
   );
 }
 

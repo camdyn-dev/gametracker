@@ -5,7 +5,7 @@ function Game(props) {
   return (
     <div>
       <h2>{title}</h2>
-      <img src={imgSrc} alt="game image" />
+      <img src={imgSrc} alt="game" />
     </div>
   );
 }
