@@ -49,6 +49,8 @@ function GameNoteForm(props) {
             multiline
             fullWidth
             placeholder="Note text"
+            minRows={4}
+            maxRows={8}
           ></TextField>
         </CardContent>
 

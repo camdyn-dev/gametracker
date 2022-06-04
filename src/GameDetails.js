@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import GameNoteForm from "./GameNoteForm";
+import GameNote from "./GameNote";
 import {
   Grid,
   Container,
@@ -54,9 +55,11 @@ function GameDetails() {
             <List>
               <ListSubheader component="h1">Notes</ListSubheader>
               {notes.map((note) => (
-                <ListItem key={note.id}>
-                  <ListItemText>{note.noteText}</ListItemText>
-                </ListItem>
+                <GameNote
+                  noteText={note.noteText}
+                  date={note.date}
+                  key={note.id}
+                />
               ))}
               <GameNoteForm id={id} fetchNotes={fetchNotes} />
             </List>
