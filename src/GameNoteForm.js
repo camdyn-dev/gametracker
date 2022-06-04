@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useInput from "./hooks/useInput";
 import axios from "axios";
 
 function GameNoteForm(props) {
   const { id } = props; //grabbing the game id
   const [noteText, handleNoteText] = useInput("");
-
   const post = async () => {
-    const res = await axios.post(`http://localhost:3001/${id}`, {
-      noteText,
-      gameId: id,
-    });
+    try {
+      await axios.post(`http://localhost:3001/${id}`, {
+        noteText,
+        gameId: id,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
-  console.log("render");
+  //should add res and do something with it, but this works fine for now
+
   return (
     <div>
       <form
