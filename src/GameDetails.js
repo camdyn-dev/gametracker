@@ -36,7 +36,7 @@ function GameDetails() {
 
   return (
     <Container>
-      <Paper elevation={2}>
+      <Paper elevation={2} style={{ minHeight: "100vh" }}>
         <Grid container spacing={2} padding={2}>
           <Grid item xs={8}>
             <h1>
@@ -58,7 +58,7 @@ function GameDetails() {
                   <ListItemText>{note.noteText}</ListItemText>
                 </ListItem>
               ))}
-              <GameNoteForm id={id} />
+              <GameNoteForm id={id} fetchNotes={fetchNotes} />
             </List>
           </Grid>
         </Grid>
