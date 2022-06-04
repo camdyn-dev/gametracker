@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 function GamePreview(props) {
   const { title, imgSrc, id, completed } = props;
   return (
-    <Grid item xs={4}>
+    <Grid item sm={6} lg={4}>
       <h2>{title}</h2>
       <div>
         <Link to={`/games/${id}`}>

@@ -4,6 +4,7 @@ import GameList from "./GameList";
 import { Routes, Route } from "react-router-dom";
 import GameForm from "./GameForm";
 import GameDetails from "./GameDetails";
+import ResponsiveAppBar from "./Navbar";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/games" element={<GameList />} />
       <Route path="/games/:id" element={<GameDetails />} />
       <Route path="/addGame" element={<GameForm />} />
+      <Route path="/navbar" element={<ResponsiveAppBar />} />
     </Routes>
   );
 }

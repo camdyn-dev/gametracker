@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import GameNoteForm from "./GameNoteForm";
-import { Grid, Container } from "@mui/material";
+import {
+  Grid,
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  Paper,
+} from "@mui/material";
 
 function GameDetails() {
   const [game, setGame] = useState({});
@@ -28,26 +36,33 @@ function GameDetails() {
 
   return (
     <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <h1>Shin Megami Tensei V</h1>
-          <div>
-            <img
-              src={game.imgSrc}
-              style={{ width: "90%", height: "90%" }}
-              alt=""
-            />
-          </div>
+      <Paper elevation={2}>
+        <Grid container spacing={2} padding={2}>
+          <Grid item xs={8}>
+            <h1>
+              {game.title} - {game.completed}
+            </h1>
+            <div>
+              <img
+                src={game.imgSrc}
+                style={{ width: "90%", height: "90%" }}
+                alt=""
+              />
+            </div>
+          </Grid>
+          <Grid item xs={4}>
+            <List>
+              <ListSubheader component="h1">Notes</ListSubheader>
+              {notes.map((note) => (
+                <ListItem key={note.id}>
+                  <ListItemText>{note.noteText}</ListItemText>
+                </ListItem>
+              ))}
+              <GameNoteForm id={id} />
+            </List>
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <h1>Notes</h1>
-          {notes.map((note) => (
-            <h3 key={note.id}>{note.noteText}</h3>
-          ))}
-        </Grid>
-      </Grid>
-
-      <GameNoteForm id={id} />
+      </Paper>
     </Container>
   );
 }
