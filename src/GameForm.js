@@ -24,7 +24,7 @@ function GameForm(props) {
   console.log(completed, "re-render");
 
   const post = async () => {
-    const res = await axios.post("http://localhost:3001/", {
+    await axios.post("http://localhost:3001/", {
       title,
       imgSrc,
       completed,

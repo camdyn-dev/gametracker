@@ -7,7 +7,11 @@ const useInput = (initVal) => {
     setState(e.target.value);
   };
 
-  return [state, handleChange, setState];
+  const reset = () => {
+    setState("");
+  };
+
+  return [state, handleChange, reset];
   //should add a reset function and change the setState export to it
 };
 

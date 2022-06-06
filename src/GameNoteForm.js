@@ -12,7 +12,7 @@ import {
 
 function GameNoteForm(props) {
   const { id, fetchNotes } = props; //grabbing the game id
-  const [noteText, handleNoteText, setNoteText] = useInput("");
+  const [noteText, handleNoteText, reset] = useInput("");
   const post = async () => {
     try {
       await axios.post(`http://localhost:3001/${id}`, {
@@ -31,7 +31,7 @@ function GameNoteForm(props) {
         onSubmit={(e) => {
           e.preventDefault();
           post();
-          setNoteText("");
+          reset();
           // I do not know why the fuck the following works, but I have been trying to make it dynamically update after posting a comment for over an HOUR
           // and I will not question this
           setTimeout(() => {

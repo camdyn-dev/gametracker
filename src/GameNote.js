@@ -17,7 +17,7 @@ import useInput from "./hooks/useInput";
 function GameNote(props) {
   const { fetchNotes, noteText, date, id } = props;
   const [edit, toggleEdit] = useToggle(false);
-  const [editText, handleEditText, setEditText] = useInput("");
+  const [editText, handleEditText, reset] = useInput("");
   const handleDelete = () => {
     //temporary solution I think? I just want to be able to call fetchNotes again
     deleteHelper("note", id);
@@ -29,7 +29,7 @@ function GameNote(props) {
     //editing logic here kekw
 
     toggleEdit();
-    setEditText("");
+    reset();
   };
 
   return (
