@@ -8,6 +8,7 @@ const useInput = (initVal) => {
   };
 
   return [state, handleChange, setState];
+  //should add a reset function and change the setState export to it
 };
 
 export default useInput;

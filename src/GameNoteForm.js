@@ -39,6 +39,8 @@ function GameNoteForm(props) {
           }, 500);
           //what I'd have to GUESS is that the callback allows it to run after it's been sent to the server? nonetheless, it kinda works currently, but I'll
           //have to adjust the timeout for production AND add a loading circle so it doesn't look whack while it's re-fetching
+
+          //the above comment looks kinda stupid now, but that's because I was originally using a 1 milisecond timeout
         }}
       >
         <CardContent>
