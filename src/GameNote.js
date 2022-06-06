@@ -10,6 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { TextField } from "@mui/material";
 
 import deleteHelper from "./helpers/deleteHelper";
+import editHelper from "./helpers/editHelper";
 
 import useToggle from "./hooks/useToggle";
 import useInput from "./hooks/useInput";
@@ -17,7 +18,7 @@ import useInput from "./hooks/useInput";
 function GameNote(props) {
   const { fetchNotes, noteText, date, id } = props;
   const [edit, toggleEdit] = useToggle(false);
-  const [editText, handleEditText, reset] = useInput("");
+  const [editText, handleEditText, reset] = useInput(noteText);
   const handleDelete = () => {
     //temporary solution I think? I just want to be able to call fetchNotes again
     deleteHelper("note", id);
@@ -26,10 +27,11 @@ function GameNote(props) {
     }, 500);
   };
   const handleEdit = () => {
-    //editing logic here kekw
-
-    toggleEdit();
-    reset();
+    editHelper("note", id, { noteText: editText });
+    setTimeout(() => {
+      fetchNotes();
+      toggleEdit();
+    }, 500); //this is a bad idea, but it'll work for now. should put a timeout where it's rendering a loading circle
   };
 
   return (

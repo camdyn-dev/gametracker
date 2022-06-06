@@ -36,7 +36,7 @@ function GameNoteForm(props) {
           // and I will not question this
           setTimeout(() => {
             fetchNotes();
-          }, 500);
+          }, 750);
           //what I'd have to GUESS is that the callback allows it to run after it's been sent to the server? nonetheless, it kinda works currently, but I'll
           //have to adjust the timeout for production AND add a loading circle so it doesn't look whack while it's re-fetching
 
