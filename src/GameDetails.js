@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import GameNoteForm from "./GameNoteForm";
 import GameNote from "./GameNote";
 import {
@@ -13,12 +13,18 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  IconButton,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+import deleteHelper from "./helpers/deleteHelper";
 
 function GameDetails() {
   const [game, setGame] = useState({});
   const [notes, setNotes] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const fetchGame = async () => {
     const res = await axios.get(`http://localhost:3001/${id}`);
@@ -37,14 +43,43 @@ function GameDetails() {
   //so, I think I want this initial call to stay here, it's fine, but what I want to ultimately do is have another function
   //that does the res2 part that I pass down to GameNoteForm and it's called upon submit, so it re-renders the form
 
+  const handleGameDelete = () => {
+    deleteHelper("game", id);
+    setTimeout(() => {
+      navigate("/games");
+    }, 500); //should really find a better way of doing this
+  };
+
   return (
     <Container>
-      {/* <Paper elevation={2} style={{}}> */}
       <Grid container spacing={2} padding={2} marginTop={1}>
         <Grid item md={8}>
           <Card style={{ padding: "1rem" }}>
-            <Typography variant="h4" component="div" textAlign="center">
+            <Typography
+              variant="h4"
+              component="div"
+              textAlign="center"
+              style={{ position: "relative" }}
+              gutterBottom
+            >
               {game.title}
+              <span
+                style={{
+                  paddingTop: "0px",
+                  position: "absolute",
+                  right: "0%",
+                }}
+              >
+                <IconButton style={{ paddingTop: "inherit" }}>
+                  <EditIcon></EditIcon>
+                </IconButton>
+                <IconButton
+                  style={{ paddingTop: "inherit" }}
+                  onClick={handleGameDelete}
+                >
+                  <DeleteIcon></DeleteIcon>
+                </IconButton>
+              </span>
             </Typography>
             <CardMedia
               component="img"
@@ -54,10 +89,13 @@ function GameDetails() {
             />
           </Card>
         </Grid>
-        <Grid item md={4}>
-          {/* <List>
-            <ListSubheader component="h1">Notes</ListSubheader> */}
-          <Card style={{ marginBottom: "1rem" }}>
+        {/* the below centering will work for now, but it's not the greatest solution, that's for sure*/}
+        <Grid item md={4} style={{ marginRight: "auto", marginLeft: "auto" }}>
+          <Card
+            style={{
+              marginBottom: "1rem",
+            }}
+          >
             <CardContent style={{ padding: ".8rem 0" }}>
               <Typography variant="h6" textAlign="center">
                 Notes:
@@ -65,13 +103,17 @@ function GameDetails() {
             </CardContent>
           </Card>
           {notes.map((note) => (
-            <GameNote noteText={note.noteText} date={note.date} key={note.id} />
+            <GameNote
+              noteText={note.noteText}
+              date={note.date}
+              key={note.id}
+              id={note.id}
+              fetchNotes={fetchNotes}
+            />
           ))}
           <GameNoteForm id={id} fetchNotes={fetchNotes} />
-          {/* </List> */}
         </Grid>
       </Grid>
-      {/* </Paper> */}
     </Container>
   );
 }
