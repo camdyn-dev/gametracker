@@ -1,23 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 function GamePreview(props) {
   const { title, imgSrc, id, completed } = props;
   return (
-    <Grid item sm={6} lg={4}>
-      <h2>{title}</h2>
-      <div>
-        <Link to={`/games/${id}`}>
-          <img
-            src={imgSrc}
-            alt="game"
-            style={{ width: "90%", height: "90%" }}
-          />
-        </Link>
-      </div>
+    <Grid item md={6} lg={4}>
+      <Card>
+        <div style={{ padding: ".5rem 1rem" }}>
+          <Typography
+            // gutterBottom
+            variant="h5"
+            component="div"
+            textAlign="center"
+          >
+            {title}
+          </Typography>
+          <Link to={`/games/${id}`}>
+            <CardMedia
+              component="img"
+              height="90%"
+              image={imgSrc}
+              alt="image"
+            />
+          </Link>
 
-      <h4>Completed? : {completed}</h4>
+          <CardContent>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              textAlign="center"
+            >
+              Completion status: {completed}
+            </Typography>
+          </CardContent>
+        </div>
+      </Card>
     </Grid>
   );
 }

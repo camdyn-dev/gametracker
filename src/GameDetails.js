@@ -7,10 +7,12 @@ import {
   Grid,
   Container,
   List,
-  ListItem,
-  ListItemText,
   ListSubheader,
-  Paper,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
 } from "@mui/material";
 
 function GameDetails() {
@@ -37,35 +39,39 @@ function GameDetails() {
 
   return (
     <Container>
-      <Paper elevation={2} style={{ minHeight: "100vh" }}>
-        <Grid container spacing={2} padding={2}>
-          <Grid item xs={8}>
-            <h1>
-              {game.title} - {game.completed}
-            </h1>
-            <div>
-              <img
-                src={game.imgSrc}
-                style={{ width: "90%", height: "90%" }}
-                alt=""
-              />
-            </div>
-          </Grid>
-          <Grid item xs={4}>
-            <List>
-              <ListSubheader component="h1">Notes</ListSubheader>
-              {notes.map((note) => (
-                <GameNote
-                  noteText={note.noteText}
-                  date={note.date}
-                  key={note.id}
-                />
-              ))}
-              <GameNoteForm id={id} fetchNotes={fetchNotes} />
-            </List>
-          </Grid>
+      {/* <Paper elevation={2} style={{}}> */}
+      <Grid container spacing={2} padding={2} marginTop={1}>
+        <Grid item md={8}>
+          <Card style={{ padding: "1rem" }}>
+            <Typography variant="h4" component="div" textAlign="center">
+              {game.title}
+            </Typography>
+            <CardMedia
+              component="img"
+              image={game.imgSrc}
+              width="90"
+              alt="game cover"
+            />
+          </Card>
         </Grid>
-      </Paper>
+        <Grid item md={4}>
+          {/* <List>
+            <ListSubheader component="h1">Notes</ListSubheader> */}
+          <Card style={{ marginBottom: "1rem" }}>
+            <CardContent style={{ padding: ".8rem 0" }}>
+              <Typography variant="h6" textAlign="center">
+                Notes:
+              </Typography>
+            </CardContent>
+          </Card>
+          {notes.map((note) => (
+            <GameNote noteText={note.noteText} date={note.date} key={note.id} />
+          ))}
+          <GameNoteForm id={id} fetchNotes={fetchNotes} />
+          {/* </List> */}
+        </Grid>
+      </Grid>
+      {/* </Paper> */}
     </Container>
   );
 }

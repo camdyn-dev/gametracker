@@ -15,8 +15,10 @@ function GameList() {
     fetchData();
   }, []); //not exactly sure where to put this, also not 100% sure how to make this work exactly like componentDidMount
 
+  //the margin top is what's causing the top to be the color
   return (
-    <Container>
+    <Container style={{ marginTop: "1vh" }}>
+      {/* would like to figure out how to conditionally justify content so everything is centered on the sm and below*/}
       <Grid container spacing={2}>
         {games.map((game) => (
           <GamePreview {...game} key={game.id} />
