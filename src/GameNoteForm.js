@@ -12,12 +12,12 @@ import {
 
 function GameNoteForm(props) {
   const { id, fetchNotes } = props; //grabbing the game id
-  const [noteText, handleNoteText, reset] = useInput("");
+  const [note, handleNote, reset] = useInput("");
   const post = async () => {
     try {
       await axios.post(`http://localhost:3001/${id}`, {
-        noteText,
-        gameId: id,
+        note,
+        game_id: id,
       });
     } catch (e) {
       console.log(e);
@@ -45,8 +45,8 @@ function GameNoteForm(props) {
       >
         <CardContent>
           <TextField
-            value={noteText}
-            onChange={handleNoteText}
+            value={note}
+            onChange={handleNote}
             required
             multiline
             fullWidth

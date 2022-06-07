@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 function GamePreview(props) {
-  const { title, imgSrc, id, completed } = props;
+  const { title, image_source, status, id } = props;
   return (
     <Grid item md={6} lg={4}>
       <Card>
@@ -20,7 +20,7 @@ function GamePreview(props) {
             <CardMedia
               component="img"
               height="90%"
-              image={imgSrc}
+              image={image_source}
               alt="image"
             />
           </Link>
@@ -31,7 +31,7 @@ function GamePreview(props) {
               color="text.secondary"
               textAlign="center"
             >
-              Completion status: {completed}
+              Completion status: {status}
             </Typography>
           </CardContent>
         </div>

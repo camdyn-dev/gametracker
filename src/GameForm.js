@@ -15,19 +15,19 @@ import {
   Button,
 } from "@mui/material";
 function GameForm(props) {
-  // const { games, setGames } = props;
-
   const [title, handleTitle] = useInput("");
-  const [imgSrc, handleImgSrc] = useInput("");
-  const [completed, handleCompleted] = useInput("no");
-
-  console.log(completed, "re-render");
+  const [image_source, handleImage] = useInput("");
+  const [status, handleStatus] = useInput("no");
+  const [priority, handlePriority] = useInput(3);
+  const [rating, handleRating] = useInput(null);
 
   const post = async () => {
     await axios.post("http://localhost:3001/", {
       title,
-      imgSrc,
-      completed,
+      image_source,
+      status,
+      priority,
+      rating,
     });
   }; // not entirely sure, but making the forum function async doesn't play well with navigate
 
@@ -67,8 +67,8 @@ function GameForm(props) {
           <TextField
             required
             label="Box art"
-            value={imgSrc}
-            onChange={handleImgSrc}
+            value={image_source}
+            onChange={handleImage}
             fullWidth
             style={typographyMargin}
           />
@@ -80,34 +80,125 @@ function GameForm(props) {
             }}
           >
             <FormControl>
-              <FormLabel>Completion Status</FormLabel>
+              <FormLabel style={{ textAlign: "center" }}>
+                Completion Status
+              </FormLabel>
               {/* completion status box, will refactor styles eventually with good names */}
-              <RadioGroup value={completed} onChange={handleCompleted} row>
+              <RadioGroup value={status} onChange={handleStatus} row>
                 <FormControlLabel
-                  value="yes"
-                  name="completed"
+                  value="Completed"
+                  name="status"
                   control={<Radio />}
-                  label="yes"
+                  label="Completed"
                 />
                 <FormControlLabel
-                  value="partially"
-                  name="completed"
+                  value="In Progress"
+                  name="status"
                   control={<Radio />}
-                  label="partially"
+                  label="In Progress"
                 />
                 <FormControlLabel
-                  value="no"
-                  name="completed"
+                  value="Lightly/Unplayed"
+                  name="status"
                   control={<Radio />}
-                  label="no"
+                  label="Lightly/Unplayed"
                 />
               </RadioGroup>
             </FormControl>
           </div>
+          {status !== "Completed" ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "1rem 0",
+              }}
+            >
+              <FormControl>
+                <FormLabel style={{ textAlign: "center" }}>
+                  How bad do you want to play/finish it?
+                </FormLabel>
+                {/* completion status box, will refactor styles eventually with good names */}
+                <RadioGroup value={priority} onChange={handlePriority} row>
+                  <FormControlLabel
+                    value="5"
+                    name="play_priority"
+                    control={<Radio />}
+                    label="NOW"
+                  />
+                  <FormControlLabel
+                    value="4"
+                    name="play_priority"
+                    control={<Radio />}
+                    label="Very soon"
+                  />
+                  <FormControlLabel
+                    value="3"
+                    name="play_priority"
+                    control={<Radio />}
+                    label="Sometime soon"
+                  />
+                  <FormControlLabel
+                    value="2"
+                    name="play_priority"
+                    control={<Radio />}
+                    label="Eventually"
+                  />
+                  <FormControlLabel
+                    value="1"
+                    name="play_priority"
+                    control={<Radio />}
+                    label="Dunno"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "1rem 0",
+              }}
+            >
+              <FormControl>
+                <FormLabel style={{ textAlign: "center" }}>
+                  How was it?
+                </FormLabel>
+                {/* completion status box, will refactor styles eventually with good names */}
+                <RadioGroup value={rating} onChange={handleRating} row>
+                  <FormControlLabel
+                    value="Fantastic"
+                    name="rating"
+                    control={<Radio />}
+                    label="Fantastic"
+                  />
+                  <FormControlLabel
+                    value="Worth it"
+                    name="rating"
+                    control={<Radio />}
+                    label="Worth it"
+                  />
+                  <FormControlLabel
+                    value="Meh"
+                    name="rating"
+                    control={<Radio />}
+                    label="Meh"
+                  />
+                  <FormControlLabel
+                    value="Not worth it"
+                    name="rating"
+                    control={<Radio />}
+                    label="Not worth it"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </div>
+          )}
+
           <Button fullWidth variant="contained" type="submit">
             Submit
           </Button>
-          {/* <button type="submit">submit gaming</button> */}
         </form>
       </Paper>
     </Container>

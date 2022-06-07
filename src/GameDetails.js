@@ -15,6 +15,7 @@ import {
   CardMedia,
   Typography,
   IconButton,
+  Tooltip,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -29,7 +30,7 @@ import deleteHelper from "./helpers/deleteHelper";
 import useToggle from "./hooks/useToggle";
 
 function GameDetails() {
-  const [game, setGame] = useState({ completed: "no" }); //setting with default val so the icon conversion works
+  const [game, setGame] = useState({ status: "Lightly/Unplayed" }); //setting with default val so the icon conversion works
   const [notes, setNotes] = useState([]);
   const [edit, toggleEdit] = useToggle(false);
   const { id } = useParams();
@@ -60,13 +61,13 @@ function GameDetails() {
   };
 
   const starConversion = {
-    yes: {
+    Completed: {
       value: <StarIcon />,
     },
-    partially: {
+    "In Progress": {
       value: <StarHalfIcon />,
     },
-    no: {
+    "Lightly/Unplayed": {
       value: <StarOutlineIcon />,
     },
   }; //using this doesn't work currently, kind of annoying
@@ -84,15 +85,21 @@ function GameDetails() {
                 gutterBottom
               >
                 <span>
-                  <IconButton
-                    disabled
-                    style={{ color: "gold", paddingTop: "inherit" }}
-                  >
-                    {starConversion[game.completed].value}
-                  </IconButton>
-                  <IconButton disabled style={{ paddingTop: "inherit" }}>
-                    <Filter5Icon />
-                  </IconButton>
+                  <span title="star">
+                    <IconButton
+                      disabled
+                      style={{ color: "gold", paddingTop: "inherit" }}
+                    >
+                      {starConversion[game.status].value}
+                    </IconButton>
+                  </span>
+
+                  <span title="high priority">
+                    <IconButton disabled style={{ paddingTop: "inherit" }}>
+                      <Filter5Icon />
+                    </IconButton>
+                  </span>
+
                   {/* use this to display how much I want to play something ig, might find another icon i dunno*/}
                 </span>
                 <span>{game.title}</span>
@@ -102,19 +109,24 @@ function GameDetails() {
                     style={{ paddingTop: "inherit" }}
                     onClick={toggleEdit}
                   >
-                    <EditIcon></EditIcon>
+                    <Tooltip title="Edit post">
+                      <EditIcon></EditIcon>
+                    </Tooltip>
                   </IconButton>
+
                   <IconButton
                     style={{ paddingTop: "inherit" }}
                     onClick={handleGameDelete}
                   >
-                    <DeleteIcon></DeleteIcon>
+                    <Tooltip title="Delete post">
+                      <DeleteIcon></DeleteIcon>
+                    </Tooltip>
                   </IconButton>
                 </span>
               </Typography>
               <CardMedia
                 component="img"
-                image={game.imgSrc}
+                image={game.image_source}
                 width="90"
                 alt="game cover"
               />
@@ -141,13 +153,7 @@ function GameDetails() {
             </CardContent>
           </Card>
           {notes.map((note) => (
-            <GameNote
-              noteText={note.noteText}
-              date={note.date}
-              key={note.id}
-              id={note.id}
-              fetchNotes={fetchNotes}
-            />
+            <GameNote {...note} key={note.id} fetchNotes={fetchNotes} />
           ))}
           <GameNoteForm id={id} fetchNotes={fetchNotes} />
         </Grid>

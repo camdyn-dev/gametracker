@@ -16,9 +16,9 @@ import useToggle from "./hooks/useToggle";
 import useInput from "./hooks/useInput";
 
 function GameNote(props) {
-  const { fetchNotes, noteText, date, id } = props;
+  const { fetchNotes, note, post_date, id } = props;
   const [edit, toggleEdit] = useToggle(false);
-  const [editText, handleEditText, reset] = useInput(noteText);
+  const [editText, handleEditText, reset] = useInput(note);
   const handleDelete = () => {
     //temporary solution I think? I just want to be able to call fetchNotes again
     deleteHelper("note", id);
@@ -27,7 +27,7 @@ function GameNote(props) {
     }, 500);
   };
   const handleEdit = () => {
-    editHelper("note", id, { noteText: editText });
+    editHelper("note", id, { note: editText });
     setTimeout(() => {
       fetchNotes();
       toggleEdit();
@@ -45,7 +45,7 @@ function GameNote(props) {
               component="span"
               gutterBottom
             >
-              Posted on {date}
+              Posted on {post_date}
             </Typography>
             <span style={{ paddingTop: "0px" }}>
               <IconButton
@@ -65,7 +65,7 @@ function GameNote(props) {
             </span>
           </div>
 
-          <Typography variant="body1">{noteText}</Typography>
+          <Typography variant="body1">{note}</Typography>
         </CardContent>
       ) : (
         <>
