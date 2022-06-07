@@ -20,11 +20,12 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { starConversion, priorityConversion } from "./helpers/iconConversions";
+import icons from "./helpers/iconConversions";
 
 import deleteHelper from "./helpers/deleteHelper";
 
 import useToggle from "./hooks/useToggle";
+import "./App.css";
 
 function GameDetails() {
   const [game, setGame] = useState({
@@ -35,6 +36,9 @@ function GameDetails() {
   const [edit, toggleEdit] = useToggle(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const { statusIcon, statusTitle } = icons.starIcons(game.status);
+  const { priorityIcon, priorityTitle } = icons.priorityIcons(game.priority); //ez reusability
 
   const fetchGame = async () => {
     const res = await axios.get(`http://localhost:3001/${id}`);
@@ -69,23 +73,16 @@ function GameDetails() {
               <Typography
                 variant="h4"
                 component="div"
-                style={{ display: "flex", justifyContent: "space-between" }}
                 gutterBottom
+                style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <span>
-                  <span title={starConversion[game.status].titleText}>
-                    <IconButton
-                      disabled
-                      style={{ color: "gold", paddingTop: "inherit" }}
-                    >
-                      {starConversion[game.status].value}
-                    </IconButton>
+                  <span title={statusTitle}>
+                    <IconButton disabled>{statusIcon}</IconButton>
                   </span>
 
-                  <span title={priorityConversion[game.priority].titleText}>
-                    <IconButton disabled style={{ paddingTop: "inherit" }}>
-                      {priorityConversion[game.priority].value}
-                    </IconButton>
+                  <span title={priorityTitle}>
+                    <IconButton disabled>{priorityIcon}</IconButton>
                   </span>
 
                   {/* use this to display how much I want to play something ig, might find another icon i dunno*/}
@@ -93,19 +90,13 @@ function GameDetails() {
                 <span>{game.title}</span>
 
                 <span>
-                  <IconButton
-                    style={{ paddingTop: "inherit" }}
-                    onClick={toggleEdit}
-                  >
+                  <IconButton onClick={toggleEdit}>
                     <Tooltip title="Edit post">
                       <EditIcon></EditIcon>
                     </Tooltip>
                   </IconButton>
 
-                  <IconButton
-                    style={{ paddingTop: "inherit" }}
-                    onClick={handleGameDelete}
-                  >
+                  <IconButton onClick={handleGameDelete}>
                     <Tooltip title="Delete post">
                       <DeleteIcon></DeleteIcon>
                     </Tooltip>

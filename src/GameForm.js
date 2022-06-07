@@ -168,25 +168,25 @@ function GameForm(props) {
                 {/* completion status box, will refactor styles eventually with good names */}
                 <RadioGroup value={rating} onChange={handleRating} row>
                   <FormControlLabel
-                    value="Fantastic"
+                    value="4"
                     name="rating"
                     control={<Radio />}
                     label="Fantastic"
                   />
                   <FormControlLabel
-                    value="Worth it"
+                    value="3"
                     name="rating"
                     control={<Radio />}
                     label="Worth it"
                   />
                   <FormControlLabel
-                    value="Meh"
+                    value="2"
                     name="rating"
                     control={<Radio />}
                     label="Meh"
                   />
                   <FormControlLabel
-                    value="Not worth it"
+                    value="1"
                     name="rating"
                     control={<Radio />}
                     label="Not worth it"

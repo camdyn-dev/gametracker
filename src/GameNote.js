@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { TextField } from "@mui/material";
 
+import fetchHelper from "./helpers/fetchHelper";
 import deleteHelper from "./helpers/deleteHelper";
 import editHelper from "./helpers/editHelper";
 
@@ -16,7 +17,7 @@ import useToggle from "./hooks/useToggle";
 import useInput from "./hooks/useInput";
 
 function GameNote(props) {
-  const { fetchNotes, note, post_date, id } = props;
+  const { note, post_date, id, fetchNotes } = props;
   const [edit, toggleEdit] = useToggle(false);
   const [editText, handleEditText, reset] = useInput(note);
   const handleDelete = () => {
@@ -38,7 +39,7 @@ function GameNote(props) {
     <Card sx={{ minWidth: 275 }} style={{ marginBottom: "1rem" }}>
       {!edit ? (
         <CardContent>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="between">
             <Typography
               sx={{ fontSize: 14 }}
               color="text.secondary"

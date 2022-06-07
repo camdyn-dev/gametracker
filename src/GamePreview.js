@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { starConversion, priorityConversion } from "./helpers/iconConversions";
+import icons from "./helpers/iconConversions";
 
 function GamePreview(props) {
   const { title, image_source, status, priority, id } = props;
+  const { statusIcon, statusTitle } = icons.starIcons(status);
+  const { priorityIcon, priorityTitle } = icons.priorityIcons(priority); //ez reusability
+
   return (
     <Grid item md={6} lg={4}>
-      <Card>
+      <Card style={{ paddingBottom: ".5rem" }}>
         <div style={{ padding: ".5rem 1rem" }}>
           <Typography
             // gutterBottom
@@ -16,9 +19,9 @@ function GamePreview(props) {
             textAlign="center"
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>{starConversion[status].value}</span>
+              <span title={statusTitle}>{statusIcon}</span>
               {title}
-              <span>{priorityConversion[priority].value}</span>
+              <span title={priorityTitle}>{priorityIcon}</span>
             </div>
           </Typography>
           <Link to={`/games/${id}`}>
@@ -30,13 +33,14 @@ function GamePreview(props) {
             />
           </Link>
 
-          <CardContent>
+          {/* <CardContent>
             <Typography
               variant="body2"
               color="text.secondary"
               textAlign="center"
             ></Typography>
-          </CardContent>
+          </CardContent> */}
+          {/* dunno if I'll want to use this for anything*/}
         </div>
       </Card>
     </Grid>

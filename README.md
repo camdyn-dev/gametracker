@@ -6,7 +6,7 @@ TODO:
 
 add delete functionality to game and notes - DONE
 
-add edit functionality to game and notes
+add edit functionality to game and notes - DONE
 -maybe add an optional edit form for games? like, I should add the ability to toggle completion status and wantToPlay easily over title, but maybe adding an extra form to change the title, image and everything together wouldn't be a bad idea.
 
 make the edit route cool when u add it (like open a radio group upon clicking edit)

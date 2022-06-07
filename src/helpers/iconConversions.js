@@ -52,3 +52,20 @@ export const ratingConversion = {
     value: "",
   },
 };
+
+const icons = {
+  starIcons: function (val) {
+    return {
+      statusIcon: starConversion[val].value,
+      statusTitle: starConversion[val].titleText,
+    };
+  },
+  priorityIcons: function (val) {
+    return {
+      priorityIcon: priorityConversion[val].value,
+      priorityTitle: priorityConversion[val].titleText,
+    };
+  },
+};
+
+export default icons;
