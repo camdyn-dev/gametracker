@@ -85,12 +85,14 @@ function GameNote(props) {
           <CardActions>
             <Button
               type="submit"
-              style={{ marginLeft: "auto", marginRight: "auto" }}
               color="primary"
               variant="contained"
               onClick={handleEdit}
             >
               Submit edit
+            </Button>
+            <Button color="error" variant="contained" onClick={toggleEdit}>
+              Cancel edit
             </Button>
           </CardActions>
         </>

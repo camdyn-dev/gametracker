@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import GameNoteForm from "./GameNoteForm";
 import GameNote from "./GameNote";
+import GameEditForm from "./GameEditForm";
 import {
   Grid,
   Container,
@@ -20,9 +21,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import deleteHelper from "./helpers/deleteHelper";
 
+import useToggle from "./hooks/useToggle";
+
 function GameDetails() {
   const [game, setGame] = useState({});
   const [notes, setNotes] = useState([]);
+  const [edit, toggleEdit] = useToggle(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -54,40 +58,51 @@ function GameDetails() {
     <Container>
       <Grid container spacing={2} padding={2} marginTop={1}>
         <Grid item md={8}>
-          <Card style={{ padding: "1rem" }}>
-            <Typography
-              variant="h4"
-              component="div"
-              textAlign="center"
-              style={{ position: "relative" }}
-              gutterBottom
-            >
-              {game.title}
-              <span
-                style={{
-                  paddingTop: "0px",
-                  position: "absolute",
-                  right: "0%",
-                }}
+          {!edit ? (
+            <Card style={{ padding: "1rem" }}>
+              <Typography
+                variant="h4"
+                component="div"
+                textAlign="center"
+                style={{ position: "relative" }}
+                gutterBottom
               >
-                <IconButton style={{ paddingTop: "inherit" }}>
-                  <EditIcon></EditIcon>
-                </IconButton>
-                <IconButton
-                  style={{ paddingTop: "inherit" }}
-                  onClick={handleGameDelete}
+                {game.title}
+                <span
+                  style={{
+                    paddingTop: "0px",
+                    position: "absolute",
+                    right: "0%",
+                  }}
                 >
-                  <DeleteIcon></DeleteIcon>
-                </IconButton>
-              </span>
-            </Typography>
-            <CardMedia
-              component="img"
-              image={game.imgSrc}
-              width="90"
-              alt="game cover"
+                  <IconButton
+                    style={{ paddingTop: "inherit" }}
+                    onClick={toggleEdit}
+                  >
+                    <EditIcon></EditIcon>
+                  </IconButton>
+                  <IconButton
+                    style={{ paddingTop: "inherit" }}
+                    onClick={handleGameDelete}
+                  >
+                    <DeleteIcon></DeleteIcon>
+                  </IconButton>
+                </span>
+              </Typography>
+              <CardMedia
+                component="img"
+                image={game.imgSrc}
+                width="90"
+                alt="game cover"
+              />
+            </Card>
+          ) : (
+            <GameEditForm
+              {...game}
+              toggleEdit={toggleEdit}
+              fetchGame={fetchGame}
             />
-          </Card>
+          )}
         </Grid>
         {/* the below centering will work for now, but it's not the greatest solution, that's for sure*/}
         <Grid item md={4} style={{ marginRight: "auto", marginLeft: "auto" }}>

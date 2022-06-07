@@ -11,6 +11,7 @@ const editHelper = async (option, targetId, newItems) => {
       } catch (e) {
         console.log(`ERROR: ${e}`);
       }
+      break;
     default:
       console.log("invalid option");
   }
