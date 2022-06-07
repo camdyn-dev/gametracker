@@ -1,7 +1,6 @@
 // will probably find a way to merge the new and edit form, passing a variable which determines how what works
-import React, { useEffect } from "react";
+import React, { memo } from "react";
 import useInput from "./hooks/useInput";
-import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
@@ -217,4 +216,4 @@ function GameEditForm(props) {
   );
 }
 
-export default GameEditForm;
+export default memo(GameEditForm);

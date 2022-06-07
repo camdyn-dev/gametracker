@@ -20,17 +20,17 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import StarIcon from "@mui/icons-material/Star";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import Filter5Icon from "@mui/icons-material/Filter5";
+import { starConversion, priorityConversion } from "./helpers/iconConversions";
 
 import deleteHelper from "./helpers/deleteHelper";
 
 import useToggle from "./hooks/useToggle";
 
 function GameDetails() {
-  const [game, setGame] = useState({ status: "Lightly/Unplayed" }); //setting with default val so the icon conversion works
+  const [game, setGame] = useState({
+    status: "Lightly/Unplayed",
+    priority: "3",
+  }); //setting with default val so the icon conversion works
   const [notes, setNotes] = useState([]);
   const [edit, toggleEdit] = useToggle(false);
   const { id } = useParams();
@@ -60,18 +60,6 @@ function GameDetails() {
     }, 500); //should really find a better way of doing this
   };
 
-  const starConversion = {
-    Completed: {
-      value: <StarIcon />,
-    },
-    "In Progress": {
-      value: <StarHalfIcon />,
-    },
-    "Lightly/Unplayed": {
-      value: <StarOutlineIcon />,
-    },
-  }; //using this doesn't work currently, kind of annoying
-
   return (
     <Container>
       <Grid container spacing={2} padding={2} marginTop={1}>
@@ -85,7 +73,7 @@ function GameDetails() {
                 gutterBottom
               >
                 <span>
-                  <span title="star">
+                  <span title={starConversion[game.status].titleText}>
                     <IconButton
                       disabled
                       style={{ color: "gold", paddingTop: "inherit" }}
@@ -94,9 +82,9 @@ function GameDetails() {
                     </IconButton>
                   </span>
 
-                  <span title="high priority">
+                  <span title={priorityConversion[game.priority].titleText}>
                     <IconButton disabled style={{ paddingTop: "inherit" }}>
-                      <Filter5Icon />
+                      {priorityConversion[game.priority].value}
                     </IconButton>
                   </span>
 

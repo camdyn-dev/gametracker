@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { starConversion, priorityConversion } from "./helpers/iconConversions";
 
 function GamePreview(props) {
-  const { title, image_source, status, id } = props;
+  const { title, image_source, status, priority, id } = props;
   return (
     <Grid item md={6} lg={4}>
       <Card>
@@ -14,7 +15,11 @@ function GamePreview(props) {
             component="div"
             textAlign="center"
           >
-            {title}
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span>{starConversion[status].value}</span>
+              {title}
+              <span>{priorityConversion[priority].value}</span>
+            </div>
           </Typography>
           <Link to={`/games/${id}`}>
             <CardMedia
@@ -30,9 +35,7 @@ function GamePreview(props) {
               variant="body2"
               color="text.secondary"
               textAlign="center"
-            >
-              Completion status: {status}
-            </Typography>
+            ></Typography>
           </CardContent>
         </div>
       </Card>
