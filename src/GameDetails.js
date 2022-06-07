@@ -19,12 +19,17 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import StarIcon from "@mui/icons-material/Star";
+import StarHalfIcon from "@mui/icons-material/StarHalf";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import Filter5Icon from "@mui/icons-material/Filter5";
+
 import deleteHelper from "./helpers/deleteHelper";
 
 import useToggle from "./hooks/useToggle";
 
 function GameDetails() {
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState({ completed: "no" }); //setting with default val so the icon conversion works
   const [notes, setNotes] = useState([]);
   const [edit, toggleEdit] = useToggle(false);
   const { id } = useParams();
@@ -54,6 +59,18 @@ function GameDetails() {
     }, 500); //should really find a better way of doing this
   };
 
+  const starConversion = {
+    yes: {
+      value: <StarIcon />,
+    },
+    partially: {
+      value: <StarHalfIcon />,
+    },
+    no: {
+      value: <StarOutlineIcon />,
+    },
+  }; //using this doesn't work currently, kind of annoying
+
   return (
     <Container>
       <Grid container spacing={2} padding={2} marginTop={1}>
@@ -63,18 +80,24 @@ function GameDetails() {
               <Typography
                 variant="h4"
                 component="div"
-                textAlign="center"
-                style={{ position: "relative" }}
+                style={{ display: "flex", justifyContent: "space-between" }}
                 gutterBottom
               >
-                {game.title}
-                <span
-                  style={{
-                    paddingTop: "0px",
-                    position: "absolute",
-                    right: "0%",
-                  }}
-                >
+                <span>
+                  <IconButton
+                    disabled
+                    style={{ color: "gold", paddingTop: "inherit" }}
+                  >
+                    {starConversion[game.completed].value}
+                  </IconButton>
+                  <IconButton disabled style={{ paddingTop: "inherit" }}>
+                    <Filter5Icon />
+                  </IconButton>
+                  {/* use this to display how much I want to play something ig, might find another icon i dunno*/}
+                </span>
+                <span>{game.title}</span>
+
+                <span>
                   <IconButton
                     style={{ paddingTop: "inherit" }}
                     onClick={toggleEdit}
