@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const orderOptions = ["Priority", "Status", "Rating", "Add date"];
+const orderOptions = ["Priority", "Status", "Add date"];
 const orderDirection = ["High -> Low", "Low -> High"];
 
 function GameOrder(props) {
@@ -18,7 +18,7 @@ function GameOrder(props) {
           value={orderBy}
           onChange={handleOrderBy}
         >
-          <MenuItem value="nothing">Doesn't matter</MenuItem>
+          <MenuItem value="N/A">N/A</MenuItem>
           {orderOptions.map((opt) => (
             <MenuItem value={opt} key={opt}>
               {opt}
@@ -26,7 +26,7 @@ function GameOrder(props) {
           ))}
         </Select>
       </FormControl>
-      {orderBy !== "nothing" && (
+      {orderBy !== "N/A" && (
         <FormControl
           style={{
             width: "10%",
@@ -36,6 +36,7 @@ function GameOrder(props) {
         >
           <InputLabel id="demo-simple-select-label">Direction</InputLabel>
           <Select
+            required
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Filter by"

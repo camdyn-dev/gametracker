@@ -13,12 +13,15 @@ import GameOrder from "./Filtering/GameOrder";
 
 function GameList() {
   const [games, setGames] = useState([]);
-  const [filter, handleFilter] = useInput("nothing");
-  const [filterParams, handleFilterParams] = useInput("");
-  const [orderBy, handleOrderBy] = useInput("nothing");
-  const [orderD, handleOrderD] = useInput("High -> Low");
+  const [filter, handleFilter] = useInput("N/A");
+  const [filterParam, handleFilterParam] = useInput(""); //switching bug with this,
+  //gotta find out how to clear it when you change filter categories so it doesn't carry over into the next, i.e., switching to status from priority yet carrying "High"
+  const [orderBy, handleOrderBy] = useInput("N/A");
+  const [orderD, handleOrderD] = useInput("");
   //god this state looks disgusting
   //that's kind of a running theme for now, though. I'll need to work on re-factoring things
+
+  //probably gonna rework it into [filter -> category], [filterParam -> catFilter], [orderBy - same], [orderD -> direction]
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +33,7 @@ function GameList() {
 
   const postFilter = async () => {
     const res = await axios.get("http://localhost:3001/filter/", {
-      params: { filterBy: filter, param: filterParams },
+      params: { filter, filterParam, orderBy, orderD },
     });
     setTimeout(() => {
       setGames(res.data);
@@ -40,12 +43,18 @@ function GameList() {
   return (
     <Container style={{ marginTop: "1vh" }}>
       {/* would like to figure out how to conditionally justify content so everything is centered on the sm and below*/}
-      <div style={{ margin: "1rem 0" }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          postFilter();
+        }}
+        style={{ margin: "1rem 0", display: "flex" }}
+      >
         <GameFilter
           filter={filter}
           handleFilter={handleFilter}
-          filterParams={filterParams}
-          handleFilterParams={handleFilterParams}
+          filterParam={filterParam}
+          handleFilterParam={handleFilterParam}
         />
         <GameOrder
           orderBy={orderBy}
@@ -53,8 +62,12 @@ function GameList() {
           orderD={orderD}
           handleOrderD={handleOrderD}
         />
-        <Button onClick={postFilter}>Filter</Button>
-      </div>
+        {(filter !== "N/A" || orderBy !== "N/A") && (
+          <Button type="submit" variant="outlined">
+            Filter
+          </Button>
+        )}
+      </form>
 
       <Grid container spacing={2}>
         {games.map((game) => (

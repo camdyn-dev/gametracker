@@ -7,7 +7,7 @@ const filterConversions = {
 };
 
 function GameFilter(props) {
-  const { filterParams, handleFilterParams, filter, handleFilter } = props;
+  const { filterParam, handleFilterParam, filter, handleFilter } = props;
   return (
     <>
       <FormControl
@@ -21,13 +21,13 @@ function GameFilter(props) {
           value={filter}
           onChange={handleFilter}
         >
-          <MenuItem value="nothing">Nothing</MenuItem>
+          <MenuItem value="N/A">N/A</MenuItem>
           <MenuItem value="priority">Priority</MenuItem>
-          <MenuItem value="status">Completion status</MenuItem>
-          <MenuItem value="rating">Rating</MenuItem>
+          <MenuItem value="status">Status</MenuItem>
+          {/* <MenuItem value="rating">Rating</MenuItem> doesn't currently work so will work on it later*/}
         </Select>
       </FormControl>
-      {filter !== "nothing" && (
+      {filter !== "N/A" && (
         <FormControl
           style={{
             width: "10%",
@@ -37,11 +37,12 @@ function GameFilter(props) {
         >
           <InputLabel id="demo-simple-select-label">{filter}</InputLabel>
           <Select
+            required
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Filter by"
-            value={filterParams}
-            onChange={handleFilterParams}
+            value={filterParam}
+            onChange={handleFilterParam}
           >
             {filterConversions[filter].map((opt) => (
               <MenuItem value={opt} key={opt}>

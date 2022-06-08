@@ -15,6 +15,8 @@ import {
   Button,
 } from "@mui/material";
 
+import { convertStatus, convertRating } from "./helpers/conversionTable";
+
 function GameEditForm(props) {
   const { toggleEdit, fetchGame } = props;
   const [title, handleTitle] = useInput(props.title);
@@ -88,22 +90,22 @@ function GameEditForm(props) {
               {/* completion status box, will refactor styles eventually with good names */}
               <RadioGroup value={status} onChange={handleStatus} row>
                 <FormControlLabel
-                  value="Completed"
+                  value={3}
                   name="status"
                   control={<Radio />}
-                  label="Completed"
+                  label={convertStatus[3]}
                 />
                 <FormControlLabel
-                  value="In Progress"
+                  value={2}
                   name="status"
                   control={<Radio />}
-                  label="In Progress"
+                  label={convertStatus[2]}
                 />
                 <FormControlLabel
-                  value="Lightly/Unplayed"
+                  value={1}
                   name="status"
                   control={<Radio />}
-                  label="Lightly/Unplayed"
+                  label={convertStatus[1]}
                 />
               </RadioGroup>
             </FormControl>
