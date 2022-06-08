@@ -71,7 +71,7 @@ function GameDetails() {
           {!edit ? (
             <Card style={{ padding: "1rem" }}>
               <Typography
-                variant="h4"
+                variant="h5"
                 component="div"
                 gutterBottom
                 style={{ display: "flex", justifyContent: "space-between" }}

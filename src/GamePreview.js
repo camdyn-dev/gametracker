@@ -10,13 +10,14 @@ function GamePreview(props) {
 
   return (
     <Grid item md={6} lg={4}>
-      <Card style={{ paddingBottom: ".5rem" }}>
+      <Card style={{ paddingBottom: ".5rem", paddingTop: ".5rem" }}>
         <div style={{ padding: ".5rem 1rem" }}>
           <Typography
             // gutterBottom
-            variant="h5"
+            variant="h6"
             component="div"
             textAlign="center"
+            gutterBottom
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span title={statusTitle}>{statusIcon}</span>
