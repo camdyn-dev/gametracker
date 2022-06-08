@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const orderOptions = ["Priority", "Status", "Add date"];
+const orderOptions = ["Priority", "Status", "Rating", "Post date"];
 const orderDirection = ["High -> Low", "Low -> High"];
 
 function GameOrder(props) {

@@ -1,3 +1,4 @@
+//doing it the other way around too for submission upon filtering
 export const convertStatus = {
   3: "Completed",
   2: "In Progress",
@@ -9,6 +10,7 @@ export const convertRating = {
   3: "Worth playing",
   2: "Meh",
   1: "Not worth it",
+  0: "Dunno/Playing",
 };
 
 export const convertPriority = {

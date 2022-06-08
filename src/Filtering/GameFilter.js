@@ -1,9 +1,15 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  convertStatus,
+  convertPriority,
+  convertRating,
+} from "../helpers/conversionTable";
 
 const filterConversions = {
   nothing: [],
   priority: ["High", "Medium", "Low"],
-  status: ["Completed", "In Progress", "Lightly/Unplayed"],
+  status: [convertStatus[3], convertStatus[2], convertStatus[1]],
+  rating: ["Worth it", "Not worth it", "Playing/Dunno"],
 };
 
 function GameFilter(props) {
@@ -24,7 +30,8 @@ function GameFilter(props) {
           <MenuItem value="N/A">N/A</MenuItem>
           <MenuItem value="priority">Priority</MenuItem>
           <MenuItem value="status">Status</MenuItem>
-          {/* <MenuItem value="rating">Rating</MenuItem> doesn't currently work so will work on it later*/}
+          <MenuItem value="rating">Rating</MenuItem> doesn't currently work so
+          will work on it later
         </Select>
       </FormControl>
       {filter !== "N/A" && (

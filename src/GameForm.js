@@ -113,7 +113,7 @@ function GameForm(props) {
               </RadioGroup>
             </FormControl>
           </div>
-          {status !== "Completed" ? (
+          {status != 3 ? (
             <div
               style={{
                 display: "flex",
@@ -197,6 +197,12 @@ function GameForm(props) {
                     name="rating"
                     control={<Radio />}
                     label={convertRating[1]}
+                  />
+                  <FormControlLabel
+                    value="0"
+                    name="rating"
+                    control={<Radio />}
+                    label={convertRating[0]}
                   />
                 </RadioGroup>
               </FormControl>
