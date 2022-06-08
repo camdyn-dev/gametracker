@@ -29,7 +29,7 @@ import "./App.css";
 
 function GameDetails() {
   const [game, setGame] = useState({
-    status: "Lightly/Unplayed",
+    status: "2",
     priority: "3",
   }); //setting with default val so the icon conversion works
   const [notes, setNotes] = useState([]);

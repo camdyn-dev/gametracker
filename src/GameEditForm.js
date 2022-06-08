@@ -15,7 +15,11 @@ import {
   Button,
 } from "@mui/material";
 
-import { convertStatus, convertRating } from "./helpers/conversionTable";
+import {
+  convertStatus,
+  convertRating,
+  convertPriority,
+} from "./helpers/conversionTable";
 
 function GameEditForm(props) {
   const { toggleEdit, fetchGame } = props;
@@ -90,19 +94,19 @@ function GameEditForm(props) {
               {/* completion status box, will refactor styles eventually with good names */}
               <RadioGroup value={status} onChange={handleStatus} row>
                 <FormControlLabel
-                  value={3}
+                  value="3"
                   name="status"
                   control={<Radio />}
                   label={convertStatus[3]}
                 />
                 <FormControlLabel
-                  value={2}
+                  value="2"
                   name="status"
                   control={<Radio />}
                   label={convertStatus[2]}
                 />
                 <FormControlLabel
-                  value={1}
+                  value="1"
                   name="status"
                   control={<Radio />}
                   label={convertStatus[1]}
@@ -110,7 +114,7 @@ function GameEditForm(props) {
               </RadioGroup>
             </FormControl>
           </div>
-          {status !== "Completed" ? (
+          {status != "3" ? ( // this is annoying so I'm gonna leave it like this (won't match string 3 depsite it being string, won't match number 3 despite it being a number upon open)
             <div
               style={{
                 display: "flex",
@@ -128,31 +132,31 @@ function GameEditForm(props) {
                     value="5"
                     name="play_priority"
                     control={<Radio />}
-                    label="NOW"
+                    label={convertPriority[5]}
                   />
                   <FormControlLabel
                     value="4"
                     name="play_priority"
                     control={<Radio />}
-                    label="Very soon"
+                    label={convertPriority[4]}
                   />
                   <FormControlLabel
                     value="3"
                     name="play_priority"
                     control={<Radio />}
-                    label="Sometime soon"
+                    label={convertPriority[3]}
                   />
                   <FormControlLabel
                     value="2"
                     name="play_priority"
                     control={<Radio />}
-                    label="Eventually"
+                    label={convertPriority[2]}
                   />
                   <FormControlLabel
                     value="1"
                     name="play_priority"
                     control={<Radio />}
-                    label="Dunno"
+                    label={convertPriority[1]}
                   />
                 </RadioGroup>
               </FormControl>
@@ -175,25 +179,25 @@ function GameEditForm(props) {
                     value="4"
                     name="rating"
                     control={<Radio />}
-                    label="Fantastic"
+                    label={convertRating[4]}
                   />
                   <FormControlLabel
                     value="3"
                     name="rating"
                     control={<Radio />}
-                    label="Worth it"
+                    label={convertRating[3]}
                   />
                   <FormControlLabel
                     value="2"
                     name="rating"
                     control={<Radio />}
-                    label="Meh"
+                    label={convertRating[2]}
                   />
                   <FormControlLabel
                     value="1"
                     name="rating"
                     control={<Radio />}
-                    label="Not worth it"
+                    label={convertRating[1]}
                   />
                 </RadioGroup>
               </FormControl>

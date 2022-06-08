@@ -14,6 +14,13 @@ import {
   Radio,
   Button,
 } from "@mui/material";
+
+import {
+  convertStatus,
+  convertPriority,
+  convertRating,
+} from "./helpers/conversionTable";
+
 function GameForm(props) {
   const [title, handleTitle] = useInput("");
   const [image_source, handleImage] = useInput("");
@@ -86,22 +93,22 @@ function GameForm(props) {
               {/* completion status box, will refactor styles eventually with good names */}
               <RadioGroup value={status} onChange={handleStatus} row>
                 <FormControlLabel
-                  value="Completed"
+                  value="3"
                   name="status"
                   control={<Radio />}
-                  label="Completed"
+                  label={convertStatus[3]}
                 />
                 <FormControlLabel
-                  value="In Progress"
+                  value="2"
                   name="status"
                   control={<Radio />}
-                  label="In Progress"
+                  label={convertStatus[2]}
                 />
                 <FormControlLabel
-                  value="Lightly/Unplayed"
+                  value="1"
                   name="status"
                   control={<Radio />}
-                  label="Lightly/Unplayed"
+                  label={convertStatus[1]}
                 />
               </RadioGroup>
             </FormControl>
@@ -124,31 +131,31 @@ function GameForm(props) {
                     value="5"
                     name="play_priority"
                     control={<Radio />}
-                    label="NOW"
+                    label={convertPriority[5]}
                   />
                   <FormControlLabel
                     value="4"
                     name="play_priority"
                     control={<Radio />}
-                    label="Very soon"
+                    label={convertPriority[4]}
                   />
                   <FormControlLabel
                     value="3"
                     name="play_priority"
                     control={<Radio />}
-                    label="Sometime soon"
+                    label={convertPriority[3]}
                   />
                   <FormControlLabel
                     value="2"
                     name="play_priority"
                     control={<Radio />}
-                    label="Eventually"
+                    label={convertPriority[2]}
                   />
                   <FormControlLabel
                     value="1"
                     name="play_priority"
                     control={<Radio />}
-                    label="Dunno"
+                    label={convertPriority[1]}
                   />
                 </RadioGroup>
               </FormControl>
@@ -171,25 +178,25 @@ function GameForm(props) {
                     value="4"
                     name="rating"
                     control={<Radio />}
-                    label="Fantastic"
+                    label={convertRating[4]}
                   />
                   <FormControlLabel
                     value="3"
                     name="rating"
                     control={<Radio />}
-                    label="Worth it"
+                    label={convertRating[3]}
                   />
                   <FormControlLabel
                     value="2"
                     name="rating"
                     control={<Radio />}
-                    label="Meh"
+                    label={convertRating[2]}
                   />
                   <FormControlLabel
                     value="1"
                     name="rating"
                     control={<Radio />}
-                    label="Not worth it"
+                    label={convertRating[1]}
                   />
                 </RadioGroup>
               </FormControl>

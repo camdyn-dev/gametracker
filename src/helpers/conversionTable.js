@@ -5,8 +5,16 @@ export const convertStatus = {
 };
 
 export const convertRating = {
-    4: "Fantastic",
-    3: "Worth playing",
-    2: "Meh",
-    1: "Not worth it"
-}
+  4: "Fantastic",
+  3: "Worth playing",
+  2: "Meh",
+  1: "Not worth it",
+};
+
+export const convertPriority = {
+  5: "NOW",
+  4: "Very soon",
+  3: "Sometime soon",
+  2: "Eventually",
+  1: "Dunno",
+};
