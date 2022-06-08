@@ -2,8 +2,7 @@ import "./App.css";
 
 import GameList from "./GameList";
 import { Routes, Route } from "react-router-dom";
-import GameForm from "./GameForm";
-import GameEditForm from "./GameEditForm";
+import GameAdd from "./GameAdd";
 import GameDetails from "./GameDetails";
 import Navbar from "./Navbar";
 
@@ -14,8 +13,7 @@ function App() {
       <Routes>
         <Route path="/games" element={<GameList />} />
         <Route path="/games/:id" element={<GameDetails />} />
-        <Route path="/addGame" element={<GameForm />} />
-        <Route path="/editGame/:id" element={<GameEditForm />} />
+        <Route path="/addGame" element={<GameAdd />} />
       </Routes>
     </div>
   );

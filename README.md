@@ -22,3 +22,5 @@ fix titles and delete on smaller screen sizes
 add filtering functionality on main page (show only completed, uncompleted or partial, anything else I decide to add yknow)
 
 add both a scoring system and want to play scale (mostly for filtering honestly)
+
+add rating icons and maybe make the whole icon display it's own component IMPORTANT

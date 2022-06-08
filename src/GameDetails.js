@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import GameNoteForm from "./GameNoteForm";
 import GameNote from "./GameNote";
-import GameEditForm from "./GameEditForm";
+import GameEdit from "./GameEdit";
 import {
   Grid,
   Container,
@@ -111,11 +111,7 @@ function GameDetails() {
               />
             </Card>
           ) : (
-            <GameEditForm
-              {...game}
-              toggleEdit={toggleEdit}
-              fetchGame={fetchGame}
-            />
+            <GameEdit {...game} toggleEdit={toggleEdit} fetchGame={fetchGame} />
           )}
         </Grid>
         {/* the below centering will work for now, but it's not the greatest solution, that's for sure*/}

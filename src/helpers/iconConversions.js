@@ -53,7 +53,7 @@ export const ratingConversion = {
   null: {
     value: "",
   },
-};
+}; //god damnit I have to do this too
 
 const icons = {
   starIcons: function (val) {
