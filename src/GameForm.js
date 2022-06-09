@@ -84,10 +84,61 @@ function GameForm(props) {
               control={<Radio />}
               label={convertStatus[1]}
             />
+            <FormControlLabel
+              value="0"
+              name="status"
+              control={<Radio />}
+              label={convertStatus[0]}
+            />
           </RadioGroup>
         </FormControl>
       </div>
-      {status != 3 ? (
+      {status == 3 || status == 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "1rem 0",
+          }}
+        >
+          <FormControl>
+            <FormLabel style={{ textAlign: "center" }}>How was it?</FormLabel>
+            {/* completion status box, will refactor styles eventually with good names */}
+            <RadioGroup value={rating} onChange={handleRating} row>
+              <FormControlLabel
+                value="4"
+                name="rating"
+                control={<Radio />}
+                label={convertRating[4]}
+              />
+              <FormControlLabel
+                value="3"
+                name="rating"
+                control={<Radio />}
+                label={convertRating[3]}
+              />
+              <FormControlLabel
+                value="2"
+                name="rating"
+                control={<Radio />}
+                label={convertRating[2]}
+              />
+              <FormControlLabel
+                value="1"
+                name="rating"
+                control={<Radio />}
+                label={convertRating[1]}
+              />
+              {/* <FormControlLabel
+                value="0"
+                name="rating"
+                control={<Radio />}
+                label={convertRating[0]}
+              /> */}
+            </RadioGroup>
+          </FormControl>
+        </div>
+      ) : (
         <div
           style={{
             display: "flex",
@@ -130,51 +181,6 @@ function GameForm(props) {
                 name="play_priority"
                 control={<Radio />}
                 label={convertPriority[1]}
-              />
-            </RadioGroup>
-          </FormControl>
-        </div>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "1rem 0",
-          }}
-        >
-          <FormControl>
-            <FormLabel style={{ textAlign: "center" }}>How was it?</FormLabel>
-            {/* completion status box, will refactor styles eventually with good names */}
-            <RadioGroup value={rating} onChange={handleRating} row>
-              <FormControlLabel
-                value="4"
-                name="rating"
-                control={<Radio />}
-                label={convertRating[4]}
-              />
-              <FormControlLabel
-                value="3"
-                name="rating"
-                control={<Radio />}
-                label={convertRating[3]}
-              />
-              <FormControlLabel
-                value="2"
-                name="rating"
-                control={<Radio />}
-                label={convertRating[2]}
-              />
-              <FormControlLabel
-                value="1"
-                name="rating"
-                control={<Radio />}
-                label={convertRating[1]}
-              />
-              <FormControlLabel
-                value="0"
-                name="rating"
-                control={<Radio />}
-                label={convertRating[0]}
               />
             </RadioGroup>
           </FormControl>

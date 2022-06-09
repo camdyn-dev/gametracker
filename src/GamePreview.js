@@ -4,9 +4,10 @@ import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import icons from "./helpers/iconConversions";
 
 function GamePreview(props) {
-  const { title, image_source, status, priority, id } = props;
+  const { title, image_source, status, priority, rating, id } = props;
   const { statusIcon, statusTitle } = icons.starIcons(status);
   const { priorityIcon, priorityTitle } = icons.priorityIcons(priority); //ez reusability
+  const { ratingIcon, ratingTitle } = icons.ratingIcons(rating);
 
   return (
     <Grid item md={6} lg={4}>
@@ -22,7 +23,11 @@ function GamePreview(props) {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span title={statusTitle}>{statusIcon}</span>
               {title}
-              <span title={priorityTitle}>{priorityIcon}</span>
+              {status === 3 || status === 0 ? (
+                <span title={ratingTitle}>{ratingIcon}</span>
+              ) : (
+                <span title={priorityTitle}>{priorityIcon}</span>
+              )}
             </div>
           </Typography>
           <Link to={`/games/${id}`}>

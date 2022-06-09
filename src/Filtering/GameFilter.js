@@ -8,8 +8,13 @@ import {
 const filterConversions = {
   nothing: [],
   priority: ["High", "Medium", "Low"],
-  status: [convertStatus[3], convertStatus[2], convertStatus[1]],
-  rating: ["Worth it", "Not worth it", "Playing/Dunno"],
+  status: [
+    convertStatus[3],
+    convertStatus[2],
+    convertStatus[1],
+    convertStatus[0],
+  ],
+  rating: ["Worth it", "Not worth it"],
 };
 
 function GameFilter(props) {
@@ -30,8 +35,7 @@ function GameFilter(props) {
           <MenuItem value="N/A">N/A</MenuItem>
           <MenuItem value="priority">Priority</MenuItem>
           <MenuItem value="status">Status</MenuItem>
-          <MenuItem value="rating">Rating</MenuItem> doesn't currently work so
-          will work on it later
+          <MenuItem value="rating">Rating</MenuItem>
         </Select>
       </FormControl>
       {filter !== "N/A" && (

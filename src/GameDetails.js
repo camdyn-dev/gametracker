@@ -31,6 +31,7 @@ function GameDetails() {
   const [game, setGame] = useState({
     status: "2",
     priority: "3",
+    rating: "2",
   }); //setting with default val so the icon conversion works
   const [notes, setNotes] = useState([]);
   const [edit, toggleEdit] = useToggle(false);
@@ -39,6 +40,7 @@ function GameDetails() {
 
   const { statusIcon, statusTitle } = icons.starIcons(game.status);
   const { priorityIcon, priorityTitle } = icons.priorityIcons(game.priority); //ez reusability
+  const { ratingIcon, ratingTitle } = icons.ratingIcons(game.rating);
 
   const fetchGame = async () => {
     const res = await axios.get(`http://localhost:3001/${id}`);
@@ -81,9 +83,15 @@ function GameDetails() {
                     <IconButton disabled>{statusIcon}</IconButton>
                   </span>
 
-                  <span title={priorityTitle}>
-                    <IconButton disabled>{priorityIcon}</IconButton>
-                  </span>
+                  {game.status === 3 || game.status === 0 ? (
+                    <span title={ratingTitle}>
+                      <IconButton disabled>{ratingIcon}</IconButton>
+                    </span>
+                  ) : (
+                    <span title={priorityTitle}>
+                      <IconButton disabled>{priorityIcon}</IconButton>
+                    </span>
+                  )}
 
                   {/* use this to display how much I want to play something ig, might find another icon i dunno*/}
                 </span>
