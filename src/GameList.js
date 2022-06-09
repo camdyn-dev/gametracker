@@ -55,12 +55,14 @@ function GameList() {
           handleFilter={handleFilter}
           filterParam={filterParam}
           handleFilterParam={handleFilterParam}
+          orderBy={orderBy}
         />
         <GameOrder
           orderBy={orderBy}
           handleOrderBy={handleOrderBy}
           orderD={orderD}
           handleOrderD={handleOrderD}
+          filter={filter}
         />
         {(filter !== "N/A" || orderBy !== "N/A") && (
           <Button type="submit" variant="outlined">

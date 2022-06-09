@@ -67,7 +67,7 @@ export const starConversion = {
 
 export const priorityConversion = {
   0: {
-    value: <FilterNoneIcon color={{ color: "#a9a9a9" }} />,
+    value: <FilterNoneIcon style={{ color: "#a9a9a9" }} />,
     titleText: `Priority: ${convertPriority[0]}`,
   },
   1: {

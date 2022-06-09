@@ -18,7 +18,8 @@ const filterConversions = {
 };
 
 function GameFilter(props) {
-  const { filterParam, handleFilterParam, filter, handleFilter } = props;
+  const { filterParam, handleFilterParam, filter, handleFilter, orderBy } =
+    props;
   return (
     <>
       <FormControl
@@ -33,9 +34,11 @@ function GameFilter(props) {
           onChange={handleFilter}
         >
           <MenuItem value="N/A">N/A</MenuItem>
-          <MenuItem value="priority">Priority</MenuItem>
           <MenuItem value="status">Status</MenuItem>
-          <MenuItem value="rating">Rating</MenuItem>
+          {orderBy !== "Rating" && (
+            <MenuItem value="priority">Priority</MenuItem>
+          )}
+          {orderBy !== "Priority" && <MenuItem value="rating">Rating</MenuItem>}
         </Select>
       </FormControl>
       {filter !== "N/A" && (
