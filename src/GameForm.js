@@ -28,8 +28,10 @@ function GameForm(props) {
     handleStatus,
     priority,
     handlePriority,
+    setPriority,
     rating,
     handleRating,
+    setRating,
   } = props;
   return (
     <>
@@ -93,14 +95,14 @@ function GameForm(props) {
           </RadioGroup>
         </FormControl>
       </div>
-      {status == 3 || status == 0 ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "1rem 0",
-          }}
-        >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "1rem 0",
+        }}
+      >
+        {status == 3 || status == 0 ? (
           <FormControl>
             <FormLabel style={{ textAlign: "center" }}>How was it?</FormLabel>
             {/* completion status box, will refactor styles eventually with good names */}
@@ -137,15 +139,7 @@ function GameForm(props) {
               /> */}
             </RadioGroup>
           </FormControl>
-        </div>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "1rem 0",
-          }}
-        >
+        ) : (
           <FormControl>
             <FormLabel style={{ textAlign: "center" }}>
               How bad do you want to play/finish it?
@@ -184,8 +178,8 @@ function GameForm(props) {
               />
             </RadioGroup>
           </FormControl>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

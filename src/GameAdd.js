@@ -9,17 +9,23 @@ import GameForm from "./GameForm";
 function GameAdd(props) {
   const [title, handleTitle] = useInput("");
   const [image_source, handleImage] = useInput("");
-  const [status, handleStatus] = useInput("no");
-  const [priority, handlePriority] = useInput(3);
-  const [rating, handleRating] = useInput(null);
+  const [status, handleStatus] = useInput("1");
+  const [priority, handlePriority] = useInput("3");
+  const [rating, handleRating] = useInput("0");
 
   const post = async () => {
+    let priorityCheck = priority;
+    let ratingCheck = rating;
+    {
+      status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0);
+    }
+    //annoyingly, setting it in the state doesn't work
     await axios.post("http://localhost:3001/", {
       title,
       image_source,
       status,
-      priority,
-      rating,
+      priority: priorityCheck,
+      rating: ratingCheck,
     });
   }; // not entirely sure, but making the forum function async doesn't play well with navigate
 

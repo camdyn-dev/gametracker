@@ -14,12 +14,17 @@ function GameEdit(props) {
   const [rating, handleRating] = useInput(props.rating);
 
   const put = async () => {
+    let priorityCheck = priority;
+    let ratingCheck = rating;
+    {
+      status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0);
+    } //makes sure only one of them is true, mainly for sorting. same thing in GameAdd
     await axios.put(`http://localhost:3001/games/${props.id}`, {
       title,
       image_source,
       status,
-      priority,
-      rating,
+      priority: priorityCheck,
+      rating: ratingCheck,
     });
   }; // not entirely sure, but making the forum function async doesn't play well with navigate
 
