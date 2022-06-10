@@ -3,7 +3,7 @@ import {
   convertStatus,
   convertPriority,
   convertRating,
-} from "./helpers/conversionTable";
+} from "../../helpers/conversionTable";
 
 import {
   TextField,
@@ -28,10 +28,8 @@ function GameForm(props) {
     handleStatus,
     priority,
     handlePriority,
-    setPriority,
     rating,
     handleRating,
-    setRating,
   } = props;
   return (
     <>
@@ -62,7 +60,7 @@ function GameForm(props) {
           margin: "1rem 0",
         }}
       >
-        <FormControl>
+        <FormControl required>
           <FormLabel style={{ textAlign: "center" }}>
             Completion Status
           </FormLabel>
@@ -103,7 +101,7 @@ function GameForm(props) {
         }}
       >
         {status == 3 || status == 0 ? (
-          <FormControl>
+          <FormControl required>
             <FormLabel style={{ textAlign: "center" }}>How was it?</FormLabel>
             {/* completion status box, will refactor styles eventually with good names */}
             <RadioGroup value={rating} onChange={handleRating} row>
@@ -140,7 +138,7 @@ function GameForm(props) {
             </RadioGroup>
           </FormControl>
         ) : (
-          <FormControl>
+          <FormControl required>
             <FormLabel style={{ textAlign: "center" }}>
               How bad do you want to play/finish it?
             </FormLabel>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import icons from "./helpers/iconConversions";
+import icons from "../../helpers/iconConversions";
 
 function GamePreview(props) {
   const { title, image_source, status, priority, rating, id } = props;

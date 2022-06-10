@@ -3,16 +3,16 @@ import {
   convertStatus,
   convertPriority,
   convertRating,
-} from "../helpers/conversionTable";
+} from "../../../helpers/conversionTable";
 
 const filterConversions = {
-  nothing: [],
   priority: ["High", "Medium", "Low"],
   status: [
     convertStatus[3],
     convertStatus[2],
     convertStatus[1],
     convertStatus[0],
+    //want to make it where 2/1 don't pop up if it's ordered by rating
   ],
   rating: ["Worth it", "Not worth it"],
 };

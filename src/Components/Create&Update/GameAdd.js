@@ -1,12 +1,12 @@
 import React from "react";
-import useInput from "./hooks/useInput";
+import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Paper, Button } from "@mui/material";
 
 import GameForm from "./GameForm";
 
-function GameAdd(props) {
+function GameAdd() {
   const [title, handleTitle] = useInput("");
   const [image_source, handleImage] = useInput("");
   const [status, handleStatus] = useInput("1");

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import GamePreview from "./GamePreview";
 import axios from "axios";
 import { Container, Grid } from "@mui/material";
-import useInput from "./hooks/useInput";
+import useInput from "../../hooks/useInput";
 import { Button } from "@mui/material";
 
 import GameFilter from "./Filtering/GameFilter";

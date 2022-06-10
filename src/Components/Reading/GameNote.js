@@ -9,12 +9,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { TextField } from "@mui/material";
 
-import fetchHelper from "./helpers/fetchHelper";
-import deleteHelper from "./helpers/deleteHelper";
-import editHelper from "./helpers/editHelper";
+import fetchHelper from "../../helpers/fetchHelper";
+import deleteHelper from "../../helpers/deleteHelper";
+import editHelper from "../../helpers/editHelper";
 
-import useToggle from "./hooks/useToggle";
-import useInput from "./hooks/useInput";
+import useToggle from "../../hooks/useToggle";
+import useInput from "../../hooks/useInput";
 
 function GameNote(props) {
   const { note, post_date, id, fetchNotes } = props;

@@ -1,6 +1,6 @@
 // will probably find a way to merge the new and edit form, passing a variable which determines how what works
 import React, { memo } from "react";
-import useInput from "./hooks/useInput";
+import useInput from "../../hooks/useInput";
 import axios from "axios";
 import { Container, Paper, Button } from "@mui/material";
 import GameForm from "./GameForm";

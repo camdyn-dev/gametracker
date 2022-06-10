@@ -1,9 +1,9 @@
 import "./App.css";
 
-import GameList from "./GameList";
+import GameList from "./Components/Reading/GameList";
 import { Routes, Route } from "react-router-dom";
-import GameAdd from "./GameAdd";
-import GameDetails from "./GameDetails";
+import GameAdd from "./Components/Create&Update/GameAdd";
+import GameDetails from "./Components/Reading/GameDetails";
 import Navbar from "./Navbar";
 
 function App() {

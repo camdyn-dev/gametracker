@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import GameNoteForm from "./GameNoteForm";
+import GameNoteForm from "../Create&Update/GameNoteForm";
 import GameNote from "./GameNote";
-import GameEdit from "./GameEdit";
+import GameEdit from "../Create&Update/GameEdit";
 import {
   Grid,
   Container,
@@ -20,12 +20,11 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import icons from "./helpers/iconConversions";
+import icons from "../../helpers/iconConversions";
 
-import deleteHelper from "./helpers/deleteHelper";
+import deleteHelper from "../../helpers/deleteHelper";
 
-import useToggle from "./hooks/useToggle";
-import "./App.css";
+import useToggle from "../../hooks/useToggle";
 
 function GameDetails() {
   const [game, setGame] = useState({

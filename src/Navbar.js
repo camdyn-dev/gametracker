@@ -116,18 +116,19 @@ const Navbar = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page.text}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+              <Link
+                to={page.link}
+                style={{ color: "white", textDecoration: "none" }}
+                key={page.link}
               >
-                <Link
-                  to={page.link}
-                  style={{ color: "white", textDecoration: "none" }}
+                <Button
+                  key={page.text}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page.text}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>
