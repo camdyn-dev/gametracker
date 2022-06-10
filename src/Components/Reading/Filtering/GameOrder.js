@@ -6,9 +6,7 @@ function GameOrder(props) {
 
   return (
     <>
-      <FormControl
-        style={{ width: "10%", backgroundColor: "white", marginRight: "1rem" }}
-      >
+      <FormControl style={{ width: "10%", marginRight: "1rem" }}>
         <InputLabel id="demo-simple-select-label">Order by</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -31,7 +29,7 @@ function GameOrder(props) {
         <FormControl
           style={{
             width: "10%",
-            backgroundColor: "white",
+
             marginRight: "1rem",
           }}
         >

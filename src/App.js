@@ -1,21 +1,35 @@
 import "./App.css";
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 import GameList from "./Components/Reading/GameList";
 import { Routes, Route } from "react-router-dom";
 import GameAdd from "./Components/Create&Update/GameAdd";
 import GameDetails from "./Components/Reading/GameDetails";
 import Navbar from "./Navbar";
+import useToggle from "./hooks/useToggle";
+import { Paper } from "@mui/material";
 
 function App() {
+  const [theme, toggleTheme] = useToggle(true);
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: theme === true ? "dark" : "light",
+    },
+  });
   return (
-    <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/games" element={<GameList />} />
-        <Route path="/games/:id" element={<GameDetails />} />
-        <Route path="/addGame" element={<GameAdd />} />
-      </Routes>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline>
+        <div className="App">
+          <Navbar theme={theme} toggleTheme={toggleTheme} />
+          <Routes>
+            <Route path="/games" element={<GameList />} />
+            <Route path="/games/:id" element={<GameDetails />} />
+            <Route path="/addGame" element={<GameAdd />} />
+          </Routes>
+        </div>
+      </CssBaseline>
+    </ThemeProvider>
   );
 }
 

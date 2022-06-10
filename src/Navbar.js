@@ -7,16 +7,17 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-
 import Button from "@mui/material/Button";
-
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 
+import { Switch, FormControlLabel } from "@mui/material";
+
 const pages = [{ text: "Add game", link: "/addGame" }];
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { theme, toggleTheme } = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -32,7 +33,6 @@ const Navbar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-
           <Typography
             variant="h6"
             noWrap
@@ -53,7 +53,6 @@ const Navbar = () => {
               GAMES
             </Link>
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -91,7 +90,6 @@ const Navbar = () => {
             </Menu>
           </Box>
           {/* this is the small one */}
-
           <Typography
             variant="h5"
             noWrap
@@ -113,7 +111,6 @@ const Navbar = () => {
               GAMES
             </Link>
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
@@ -130,6 +127,13 @@ const Navbar = () => {
                 </Button>
               </Link>
             ))}
+          </Box>
+          <Box>
+            <FormControlLabel
+              label="Dark mode"
+              labelPlacement="start"
+              control={<Switch onChange={toggleTheme} checked={theme} />}
+            />
           </Box>
         </Toolbar>
       </Container>

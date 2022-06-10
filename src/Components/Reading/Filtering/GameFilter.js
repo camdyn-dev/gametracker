@@ -22,9 +22,7 @@ function GameFilter(props) {
     props;
   return (
     <>
-      <FormControl
-        style={{ width: "10%", backgroundColor: "white", marginRight: "1rem" }}
-      >
+      <FormControl style={{ width: "10%", marginRight: "1rem" }}>
         <InputLabel id="demo-simple-select-label">Filter by</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -45,7 +43,7 @@ function GameFilter(props) {
         <FormControl
           style={{
             width: "10%",
-            backgroundColor: "white",
+
             marginRight: "1rem",
           }}
         >
