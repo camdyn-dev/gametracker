@@ -16,6 +16,8 @@ import editHelper from "../../helpers/editHelper";
 import useToggle from "../../hooks/useToggle";
 import useInput from "../../hooks/useInput";
 
+import { immTimeout } from "../../helpers/timeoutHelper";
+
 function GameNote(props) {
   const { note, post_date, id, fetchNotes } = props;
   const [edit, toggleEdit] = useToggle(false);
@@ -23,16 +25,11 @@ function GameNote(props) {
   const handleDelete = () => {
     //temporary solution I think? I just want to be able to call fetchNotes again
     deleteHelper("note", id);
-    setTimeout(() => {
-      fetchNotes();
-    }, 500);
+    immTimeout(fetchNotes);
   };
   const handleEdit = () => {
     editHelper("note", id, { note: editText });
-    setTimeout(() => {
-      fetchNotes();
-      toggleEdit();
-    }, 500); //this is a bad idea, but it'll work for now. should put a timeout where it's rendering a loading circle
+    immTimeout(fetchNotes, false, toggleEdit);
   };
 
   return (

@@ -3,7 +3,7 @@ import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Paper, Button } from "@mui/material";
-
+import { immTimeout } from "../../helpers/timeoutHelper";
 import GameForm from "./GameForm";
 
 function GameAdd() {
@@ -20,7 +20,7 @@ function GameAdd() {
       status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0);
     }
     //annoyingly, setting it in the state doesn't work
-    await axios.post("http://localhost:3001/", {
+    await axios.post("http://localhost:3001/games/", {
       title,
       image_source,
       status,
@@ -37,9 +37,7 @@ function GameAdd() {
           onSubmit={(e) => {
             e.preventDefault();
             post();
-            setTimeout(() => {
-              navigate("/games");
-            }, 1000);
+            immTimeout(navigate, "/games");
           }}
         >
           <GameForm

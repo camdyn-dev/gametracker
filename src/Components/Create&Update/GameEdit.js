@@ -4,6 +4,7 @@ import useInput from "../../hooks/useInput";
 import axios from "axios";
 import { Container, Paper, Button } from "@mui/material";
 import GameForm from "./GameForm";
+import { immTimeout } from "../../helpers/timeoutHelper";
 
 function GameEdit(props) {
   const { toggleEdit, fetchGame } = props;
@@ -35,10 +36,7 @@ function GameEdit(props) {
           onSubmit={(e) => {
             e.preventDefault();
             put();
-            setTimeout(() => {
-              fetchGame();
-              toggleEdit();
-            }, 1000);
+            immTimeout(fetchGame, false, toggleEdit);
           }}
         >
           <GameForm

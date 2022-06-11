@@ -25,6 +25,7 @@ import icons from "../../helpers/iconConversions";
 import deleteHelper from "../../helpers/deleteHelper";
 
 import useToggle from "../../hooks/useToggle";
+import { immTimeout } from "../../helpers/timeoutHelper";
 
 function GameDetails() {
   const [game, setGame] = useState({
@@ -42,7 +43,7 @@ function GameDetails() {
   const { ratingIcon, ratingTitle } = icons.ratingIcons(game.rating);
 
   const fetchGame = async () => {
-    const res = await axios.get(`http://localhost:3001/${id}`);
+    const res = await axios.get(`http://localhost:3001/games/${id}`);
     setGame(res.data[0]);
   };
   const fetchNotes = async () => {
@@ -60,9 +61,7 @@ function GameDetails() {
 
   const handleGameDelete = () => {
     deleteHelper("game", id);
-    setTimeout(() => {
-      navigate("/games");
-    }, 500); //should really find a better way of doing this
+    immTimeout(navigate, "/games");
   };
 
   return (

@@ -9,13 +9,14 @@ import {
   CardActions,
   CardContent,
 } from "@mui/material";
+import { immTimeout } from "../../helpers/timeoutHelper";
 
 function GameNoteForm(props) {
   const { id, fetchNotes } = props; //grabbing the game id
-  const [note, handleNote, reset] = useInput("");
+  const [note, handleNote, setNote, reset] = useInput("");
   const post = async () => {
     try {
-      await axios.post(`http://localhost:3001/${id}`, {
+      await axios.post(`http://localhost:3001/notes/${id}`, {
         note,
         game_id: id,
       });
@@ -31,16 +32,7 @@ function GameNoteForm(props) {
         onSubmit={(e) => {
           e.preventDefault();
           post();
-          reset();
-          // I do not know why the fuck the following works, but I have been trying to make it dynamically update after posting a comment for over an HOUR
-          // and I will not question this
-          setTimeout(() => {
-            fetchNotes();
-          }, 750);
-          //what I'd have to GUESS is that the callback allows it to run after it's been sent to the server? nonetheless, it kinda works currently, but I'll
-          //have to adjust the timeout for production AND add a loading circle so it doesn't look whack while it's re-fetching
-
-          //the above comment looks kinda stupid now, but that's because I was originally using a 1 milisecond timeout
+          immTimeout(fetchNotes, false, reset);
         }}
       >
         <CardContent>

@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 
 import GameFilter from "./Filtering/GameFilter";
 import GameOrder from "./Filtering/GameOrder";
+import { immTimeout } from "../../helpers/timeoutHelper";
 //A popular one will probably be
 //WHERE priority BETWEEN 4 AND 5 ORDER BY priority DESC;
 
@@ -25,19 +26,17 @@ function GameList() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get("http://localhost:3001");
+      const data = await axios.get("http://localhost:3001/games");
       setGames(data.data);
     };
     fetchData();
   }, []); //not exactly sure where to put this, also not 100% sure how to make this work exactly like componentDidMount
 
   const postFilter = async () => {
-    const res = await axios.get("http://localhost:3001/filter/", {
+    const res = await axios.get("http://localhost:3001/games/filter/", {
       params: { filter, filterParam, orderBy, orderD },
     });
-    setTimeout(() => {
-      setGames(res.data);
-    }, 500);
+    immTimeout(setGames, res.data);
   };
   //the margin top is what's causing the top to be the color
   return (
