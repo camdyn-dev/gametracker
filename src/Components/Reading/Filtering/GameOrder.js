@@ -1,4 +1,6 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+//gotta fix these, the boxse are way too small on mobile devices
+//it's the shitty autoset width that I've got going on
 
 function GameOrder(props) {
   const { orderBy, handleOrderBy, orderD, handleOrderD, filter } = props;
@@ -6,7 +8,7 @@ function GameOrder(props) {
 
   return (
     <>
-      <FormControl style={{ width: "10%", marginRight: "1rem" }}>
+      <FormControl style={{ width: "20%", marginRight: "1rem" }}>
         <InputLabel id="demo-simple-select-label">Order by</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -28,7 +30,7 @@ function GameOrder(props) {
       {orderBy !== "N/A" && (
         <FormControl
           style={{
-            width: "10%",
+            width: "20%",
 
             marginRight: "1rem",
           }}

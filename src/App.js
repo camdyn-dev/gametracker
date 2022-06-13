@@ -1,5 +1,5 @@
 import "./App.css";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import GameList from "./Components/Reading/GameList";
 import { Routes, Route } from "react-router-dom";
@@ -7,7 +7,7 @@ import GameAdd from "./Components/Create&Update/GameAdd";
 import GameDetails from "./Components/Reading/GameDetails";
 import Navbar from "./Navbar";
 import useToggle from "./hooks/useToggle";
-import { Paper } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function App() {
   const [theme, toggleTheme] = useToggle(true);

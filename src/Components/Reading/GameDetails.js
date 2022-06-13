@@ -25,6 +25,7 @@ import icons from "../../helpers/iconConversions";
 import deleteHelper from "../../helpers/deleteHelper";
 
 import useToggle from "../../hooks/useToggle";
+import useWidth from "../../hooks/useWidth";
 import { immTimeout } from "../../helpers/timeoutHelper";
 
 function GameDetails() {
@@ -64,51 +65,64 @@ function GameDetails() {
     immTimeout(navigate, "/games");
   };
 
+  //breakpoint stuff, makes text go in the middle when sizes are larger, above when smaller
+  const width = useWidth();
+  const titlePos = (
+    <Typography variant="h5" component="div" textAlign="center">
+      {game.title}
+    </Typography>
+  );
+
   return (
     <Container>
       <Grid container spacing={2} padding={2} marginTop={1}>
         <Grid item md={8}>
           {!edit ? (
             <Card style={{ padding: "1rem" }}>
-              <Typography
-                variant="h5"
-                component="div"
-                gutterBottom
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <span>
-                  <span title={statusTitle}>
-                    <IconButton disabled>{statusIcon}</IconButton>
+              <Grid>
+                <Grid item xs={12}></Grid>
+                {(width === "xs" || width === "sm" || width === "md") &&
+                  titlePos}
+                <Grid
+                  item
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>
+                    <span title={statusTitle}>
+                      <IconButton disabled>{statusIcon}</IconButton>
+                    </span>
+
+                    {game.status === 3 || game.status === 0 ? (
+                      <span title={ratingTitle}>
+                        <IconButton disabled>{ratingIcon}</IconButton>
+                      </span>
+                    ) : (
+                      <span title={priorityTitle}>
+                        <IconButton disabled>{priorityIcon}</IconButton>
+                      </span>
+                    )}
                   </span>
 
-                  {game.status === 3 || game.status === 0 ? (
-                    <span title={ratingTitle}>
-                      <IconButton disabled>{ratingIcon}</IconButton>
-                    </span>
-                  ) : (
-                    <span title={priorityTitle}>
-                      <IconButton disabled>{priorityIcon}</IconButton>
-                    </span>
-                  )}
+                  {(width === "lg" || width === "xl") && titlePos}
 
-                  {/* use this to display how much I want to play something ig, might find another icon i dunno*/}
-                </span>
-                <span>{game.title}</span>
+                  <span>
+                    <IconButton onClick={toggleEdit}>
+                      <Tooltip title="Edit post">
+                        <EditIcon></EditIcon>
+                      </Tooltip>
+                    </IconButton>
 
-                <span>
-                  <IconButton onClick={toggleEdit}>
-                    <Tooltip title="Edit post">
-                      <EditIcon></EditIcon>
-                    </Tooltip>
-                  </IconButton>
-
-                  <IconButton onClick={handleGameDelete}>
-                    <Tooltip title="Delete post">
-                      <DeleteIcon></DeleteIcon>
-                    </Tooltip>
-                  </IconButton>
-                </span>
-              </Typography>
+                    <IconButton onClick={handleGameDelete}>
+                      <Tooltip title="Delete post">
+                        <DeleteIcon></DeleteIcon>
+                      </Tooltip>
+                    </IconButton>
+                  </span>
+                </Grid>
+              </Grid>
               <CardMedia
                 component="img"
                 image={game.image_source}

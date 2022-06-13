@@ -15,7 +15,7 @@ function GamePreview(props) {
         <div style={{ padding: ".5rem 1rem" }}>
           <Typography
             // gutterBottom
-            variant="h6"
+            variant="h7" // good size with the things at the top
             component="div"
             textAlign="center"
             gutterBottom
