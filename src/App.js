@@ -36,5 +36,4 @@ function App() {
 export default App;
 
 //at it's basics, it's just gonna track what games I've played, am playing and want to play (sort of like myanimelist)
-//however, I could be biggus diccus maximus and make it an app that anyone can use, kinda like myanimelist
 //probably will do the first first then the second second
