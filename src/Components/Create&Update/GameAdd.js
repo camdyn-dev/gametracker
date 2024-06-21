@@ -16,9 +16,10 @@ function GameAdd() {
   const post = async () => {
     let priorityCheck = priority;
     let ratingCheck = rating;
-    {
-      status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0);
-    }
+
+    // Is the game either completed, or dropped? If so, set the priority to zero. Otherwise, set the rating to zero
+    status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0); 
+    
     //annoyingly, setting it in the state doesn't work
     await axios.post("http://localhost:3001/games/", {
       title,
@@ -40,6 +41,7 @@ function GameAdd() {
             immTimeout(navigate, "/games");
           }}
         >
+          {/* Pass everything into the GameForm*/}
           <GameForm
             title={title}
             handleTitle={handleTitle}

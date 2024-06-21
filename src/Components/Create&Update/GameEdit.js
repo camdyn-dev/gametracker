@@ -17,9 +17,10 @@ function GameEdit(props) {
   const put = async () => {
     let priorityCheck = priority;
     let ratingCheck = rating;
-    {
-      status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0);
-    } //makes sure only one of them is true, mainly for sorting. same thing in GameAdd
+
+    // Is the game either completed, or dropped? If so, set the priority to zero. Otherwise, set the rating to zero
+    status == 3 || status == 0 ? (priorityCheck = 0) : (ratingCheck = 0);
+    
     await axios.put(`http://localhost:3001/games/${props.id}`, {
       title,
       image_source,
@@ -39,6 +40,7 @@ function GameEdit(props) {
             immTimeout(fetchGame, false, toggleEdit);
           }}
         >
+          {/* Pass everything into the GameForm*/}
           <GameForm
             title={title}
             handleTitle={handleTitle}

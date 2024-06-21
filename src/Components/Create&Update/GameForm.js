@@ -100,6 +100,8 @@ function GameForm(props) {
           margin: "1rem 0",
         }}
       >
+            
+        {/*// Is the game either completed, or dropped? If so, only show the rating options*/}
         {status == 3 || status == 0 ? (
           <FormControl required>
             <FormLabel style={{ textAlign: "center" }}>How was it?</FormLabel>
@@ -137,7 +139,11 @@ function GameForm(props) {
               /> */}
             </RadioGroup>
           </FormControl>
-        ) : (
+        )
+        // OTHERWISE
+         : // Only show the priority options
+         // OTHERWISE
+         (
           <FormControl required>
             <FormLabel style={{ textAlign: "center" }}>
               How bad do you want to play/finish it?
